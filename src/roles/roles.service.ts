@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { users } from './../users/entities/users.entity';
 import { Repository } from 'typeorm';
 import { CreateRolesDto, EditRolesDto } from './dtos';
 import { Roles } from './entities/roles.entity';
@@ -9,7 +10,9 @@ export class RolesService {
 
     constructor(
         @InjectRepository(Roles)
-        private readonly rolesRepository: Repository<Roles>
+        private readonly rolesRepository: Repository<Roles>,
+        @InjectRepository(users)
+        private readonly usersRepository: Repository<users>
     ){}
     
     async getMany(){
@@ -33,6 +36,10 @@ export class RolesService {
     }
     async deleteOne(id:number){
         return await this.rolesRepository.delete(id);
+    }
+
+    async findUsers(id:number){
+        return await this.usersRepository.find({role_id:id})
     }
 
 }

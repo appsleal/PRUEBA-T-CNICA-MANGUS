@@ -3,6 +3,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { RolesModule } from './roles/roles.module';
+import { join } from 'path';
+import { UsersModule } from './users/users.module';
+import { ClientsModule } from './clients/clients.module';
+import { EmployeesModule } from './employees/employees.module';
 
 @Module({
   imports: [
@@ -18,6 +22,9 @@ import { RolesModule } from './roles/roles.module';
       synchronize: true,
     }),
     RolesModule,
+    UsersModule,
+    ClientsModule,
+    EmployeesModule
   ],
   controllers: [AppController],
   providers: [AppService],

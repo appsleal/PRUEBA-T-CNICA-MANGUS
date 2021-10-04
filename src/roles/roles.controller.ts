@@ -18,7 +18,7 @@ export class RolesController {
 
     @Get(':id')
     async getOne(@Param('id', ParseIntPipe) id:number){
-        const data = await this.roleService.getOne(id)
+        const data = await this.roleService.findUsers(id)
         return {
             ok:true,
             data
