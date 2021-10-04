@@ -21,9 +21,9 @@ export class EmployeesService {
         return await this.employeeRepository.find()
     }
     async getOne(id:number){
-        const role = await this.employeeRepository.findOne(id);
-        if (!role) throw new NotFoundException('Rol no existe');
-        return role;
+        const employee = await this.employeeRepository.findOne(id);
+        if (!employee) throw new NotFoundException('Rol no existe');
+        return employee;
     }
 
     async createOne(dto:CreateEmployeeDto,dto2:CreateUsersDto){
